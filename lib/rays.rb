@@ -1,3 +1,4 @@
+require "rays/constants"
 require "rays/chained_methods_definition"
 
 module Rays
