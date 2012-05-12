@@ -1,15 +1,15 @@
-require "rays/chained_methods_arguments"
+require "rayt/chained_methods_arguments"
 
-module Rays
+module Rayt
   class ChainedMethodsDefinition
     attr_reader :chained_methods_arguments
 
     def initialize(parent = nil)
-      @parent = parent || Rays
+      @parent = parent || Rayt
 
       @chained_methods_arguments = parent ?
         parent.chained_methods_arguments :
-        Rays::ChainedMethodsArguments.new
+        Rayt::ChainedMethodsArguments.new
     end
 
     ##
@@ -22,17 +22,21 @@ module Rays
         end
       end
 
-      (class << @parent; self; end).instance_exec(@chained_methods_arguments) do |args|
+      (class << @parent; self; end).instance_exec(@chained_methods_arguments, self) do |args, definition|
         define_method method_name do |*passed_arguments|
           passed_arguments.each_with_index do |pa, i|
             args.instance_variable_set(("@" + arg_names[i].to_s), pa)
           end
 
-          block.call args if block
+          if block
+            block.call args
+          else
+            definition
+          end
         end
       end
 
-      Rays::ChainedMethodsDefinition.new self
+      Rayt::ChainedMethodsDefinition.new self
     end
   end
 end

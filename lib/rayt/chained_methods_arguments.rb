@@ -1,4 +1,4 @@
-module Rays
+module Rayt
   class ChainedMethodsArguments
     
   end

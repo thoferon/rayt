@@ -1,4 +1,4 @@
-require "rays"
+require "rayt"
 
 class Animal
   def initialize(name)
@@ -10,9 +10,9 @@ class Animal
   end
 end
 
-Rays.define.the(:animal).is(:colour) do |args|
+Rayt.define.the(:animal).is(:colour) do |args|
   args.animal.paint(args.colour)
 end
 
 cat = Animal.new "cat"
-Rays.the(cat).is("blue") # will show "The cat is now blue."
+Rayt.the(cat).is("blue") # will show "The cat is now blue."

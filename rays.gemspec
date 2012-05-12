@@ -1,12 +1,12 @@
 $LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
-require "rays/constants"
+require "rayt/constants"
 
 Gem::Specification.new do |s|
-  s.name = "rays"
-  s.version = Rays::VERSION
+  s.name = "rayt"
+  s.version = Rayt::VERSION
   s.authors = ["Thomas Feron"]
-  s.description = "Ruby As You Speak"
-  s.summary = "rays-#{s.version}"
+  s.description = "Ruby As You Talk"
+  s.summary = "rayt-#{s.version}"
   s.email = "tho.feron@gmail.com"
   s.homepage = "http://www.lf-creation.com"
 
